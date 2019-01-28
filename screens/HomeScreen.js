@@ -82,21 +82,29 @@ export default class HomeScreen extends React.Component {
           </View>
 
           <View style={styles.getStartedContainer}>
+
               <TouchableOpacity style={styles.logButton} onPress={this.logIn}>
                 <View style={styles.buttonContent}>
-                    <FontAwesome style={[styles.atLeft, styles.white]} name="facebook-square" size={15} />
-                    <Text styles={styles.white}>Se connecter avec Facebook</Text>
+                    <FontAwesome style={[styles.atRight, styles.white]} name="facebook-square" size={15} />
+                    <Text style={styles.white}>Se connecter avec Facebook</Text>
                 </View>
               </TouchableOpacity>
               
-
               <TouchableOpacity style={styles.logButton} onPress={this.logIn}>
-                <Text style={styles.logText}>Se connecter avec Google</Text>
+                <View style={styles.buttonContent}>
+                    <FontAwesome style={[styles.atRight, styles.white]} name="facebook-square" size={15} />
+                    <Text style={styles.white}>Se connecter avec Google    </Text>
+                </View>
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.logButton} onPress={this.logIn}>
-                <Text style={styles.logText}>Créer un compte</Text>
+                <View style={styles.buttonContent}>
+                    <FontAwesome style={[styles.atRight, styles.white]} name="user" size={15} />
+                    <Text style={styles.white}>         Créer un compte           </Text>
+                </View>
               </TouchableOpacity>
+
+
           </View>
  
         </ScrollView>
@@ -122,9 +130,14 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 
-  atLeft: {
+  atRight: {
     position: 'relative',
     right: 15
+  },
+
+  atRightPlus: {
+    position: 'relative',
+    right: 25
   },
 
   contentContainer: {
@@ -168,8 +181,7 @@ const styles = StyleSheet.create({
     height: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    color: 'white'
+    justifyContent: 'center'
 
   },
 
