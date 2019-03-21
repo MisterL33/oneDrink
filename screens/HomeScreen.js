@@ -18,52 +18,28 @@ import { Ionicons, FontAwesome } from '@expo/vector-icons';
 
 import * as firebase from 'firebase';
 
-// Initialize Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyCtBDYT0t9BRmfxZGY7g68gcwJZX0gvma0",
-  authDomain: "onedrink-ca4b8.firebaseapp.com",
-  databaseURL: "https://onedrink-ca4b8.firebaseio.com",
-  projectId: "onedrink-ca4b8",
-  storageBucket: "onedrink-ca4b8.appspot.com",
-  messagingSenderId: "798193903240"
-};
-
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(Expo.Constants.manifest.extra.firebase);
 
 export default class HomeScreen extends React.Component {
-  static navigationOptions = {
-    header: null,
-  };
+
+  static contextType = StateContext;
 
   componentDidMount = () => {
     console.log('here')
-    // Listen for authentication state to change.
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user != null) {
-      console.log("We are authenticated now!");
-    }
-
-  // Do other things
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user != null) {
+        console.log("We are authenticated now!");
+        console.log(user);
+      }
     });
   }
 
-
-  async logIn() {
-    const {
-      type,
-      token,
-    } = await Expo.Facebook.logInWithReadPermissionsAsync('151603618878634', {
-      permissions: ['public_profile'],
-    });
-    
-    if (type === 'success') {
-      // Get the user's name using Facebook's Graph API
-      const response = await fetch(
-        `https://graph.facebook.com/me?access_token=${token}`
-      );
-      Alert.alert('Logged in!', `Hi ${(await response.json()).name}!`);
-    }
+  signInWithFacebook = () => {
+    /*this.context.actions.facebookLogin(mail, mdp).then((res) => {
+      console.log('ok connecté')
+    })*/
   }
+ 
 
   render() {
     return (
@@ -83,21 +59,21 @@ export default class HomeScreen extends React.Component {
 
           <View style={styles.getStartedContainer}>
 
-              <TouchableOpacity style={styles.logButton} onPress={this.logIn}>
+              <TouchableOpacity style={styles.logButton} onPress={this.signInWithFacebook}>
                 <View style={styles.buttonContent}>
                     <FontAwesome style={[styles.atRight, styles.white]} name="facebook-square" size={15} />
                     <Text style={styles.white}>Se connecter avec Facebook</Text>
                 </View>
               </TouchableOpacity>
               
-              <TouchableOpacity style={styles.logButton} onPress={this.logIn}>
+              <TouchableOpacity style={styles.logButton} onPress={this.signInWithFacebook}>
                 <View style={styles.buttonContent}>
                     <FontAwesome style={[styles.atRight, styles.white]} name="facebook-square" size={15} />
                     <Text style={styles.white}>Se connecter avec Google    </Text>
                 </View>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.logButton} onPress={this.logIn}>
+              <TouchableOpacity style={styles.logButton} onPress={this.signInWithFacebook}>
                 <View style={styles.buttonContent}>
                     <FontAwesome style={[styles.atRight, styles.white]} name="user" size={15} />
                     <Text style={styles.white}>         Créer un compte           </Text>

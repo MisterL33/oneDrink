@@ -1,13 +1,25 @@
 {
   "expo": {
-    "name": "drink",
-    "slug": "drink",
+    "name": "oneDrink",
+    "slug": "onedrink",
     "privacy": "public",
     "sdkVersion": "32.0.0",
     "platforms": [
       "ios",
       "android"
     ],
+    "extra": {
+      "firebase": {
+        "apiKey": "AIzaSyDl9eRUt4LMtg0Gtok9DHAeD2Rp5isEmL8",
+        "authDomain": "onedrinkreact.firebaseapp.com",
+        "databaseURL": "https://onedrinkreact.firebaseio.com",
+        "projectId": "onedrinkreact",
+        "storageBucket": "onedrinkreact.appspot.com",
+      },
+      "facebook": {
+        "appId": "974962599365690"
+      }
+    },
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -24,6 +36,7 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": ""
   }
 }
